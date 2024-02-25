@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace assignment2.Models
 {
-    // Id, Street, City, Zipcode
     public class Address
     {
         public int Id { get; set; }
@@ -13,6 +12,8 @@ namespace assignment2.Models
         public string City { get; set; }
         public int Zipcode { get; set; }
 
+        public int PersonId { get; set; }
         public Person Person { get; set; }
+
     }
 }

@@ -21,21 +21,16 @@ namespace assignment2
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Person - Addresss
-            modelBuilder.Entity<Person>().HasOne(p => p.Address).WithOne(a => a.Person).HasForeignKey<Address>(a => a.Id);
+
+            modelBuilder.Entity<Person>().HasOne(p => p.Address).WithOne(a => a.Person).HasForeignKey<Address>(a => a.PersonId);
 
             modelBuilder.Entity<Person>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Address>().Property(a => a.Id).ValueGeneratedOnAdd();
 
-            // Person - PhoneNumber
+            modelBuilder.Entity<PhoneNumber>().HasOne(pn => pn.Person).WithMany(p => p.PhoneNumbers).HasForeignKey(pn => pn.PersonId);
 
-            modelBuilder.Entity<PhoneNumber>().HasOne(pn => pn.Person).WithMany(p => p.PhoneNumbers).HasForeignKey(pn => pn.Id);
+            modelBuilder.Entity<Email>().HasOne(e => e.Person).WithMany(p => p.Emails).HasForeignKey(e => e.PersonId);
 
-            // Person - Email
-
-            modelBuilder.Entity<Email>().HasOne(e => e.Person).WithMany(p => p.Emails).HasForeignKey(e => e.Id);
-
-            // Person Event
             modelBuilder.Entity<PersonEvent>().HasKey(pe => new { pe.PersonId, pe.EventId });
             modelBuilder.Entity<PersonEvent>().HasOne(pe => pe.Person).WithMany(p => p.PersonEvents).HasForeignKey(pe => pe.PersonId);
 

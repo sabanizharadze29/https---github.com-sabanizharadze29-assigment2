@@ -14,5 +14,6 @@ namespace assignment2.Models
         public bool IsPrimary { get; set; }
 
         public Person Person { get; set; }
+        public int PersonId { get; set; }
     }
 }

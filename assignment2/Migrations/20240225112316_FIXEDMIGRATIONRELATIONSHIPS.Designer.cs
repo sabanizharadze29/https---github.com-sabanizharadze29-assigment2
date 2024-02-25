@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using assignment2;
 
@@ -11,9 +12,10 @@ using assignment2;
 namespace assignment2.Migrations
 {
     [DbContext(typeof(Assignment2DbContext))]
-    partial class Assignment2DbContextModelSnapshot : ModelSnapshot
+    [Migration("20240225112316_FIXEDMIGRATIONRELATIONSHIPS")]
+    partial class FIXEDMIGRATIONRELATIONSHIPS
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,5 @@
 ﻿using System;
+using assignment2.ExtensionMethods;
 using assignment2.Models;
 using assignment2.Repositories;
 
@@ -23,13 +24,12 @@ namespace assignment2
                     City = "Anytown",
                     Zipcode = 12345
                 }
-                // Add other properties as needed
             };
 
             personService.AddPerson(person);
 
             var retrievedPerson = personService.GetPersonById(person.Id);
-            Console.WriteLine($"Retrieved person: {retrievedPerson.Firstname} {retrievedPerson.LastName}");
+            $"Retrieved person: {retrievedPerson.Firstname} {retrievedPerson.LastName}".Log();
 
             var newAddress = new Address
             {
@@ -42,34 +42,22 @@ namespace assignment2
             personService.DeletePhoneNumbers(person.Id);
 
             var adults = personService.GetAdults();
-            Console.WriteLine("Adults:");
-            foreach (var adult in adults)
-            {
-                Console.WriteLine($"{adult.Firstname} {adult.LastName}");
-            }
+            adults.Log("Adults:");
 
             var personsByAddress = personService.GetPersonsByAddress("123 Main St");
-            Console.WriteLine("Persons by address:");
-            foreach (var personByAddress in personsByAddress)
-            {
-                Console.WriteLine($"{personByAddress.Firstname} {personByAddress.LastName}");
-            }
+            personsByAddress.Log("Persons by address:");
 
             var personsByName = personService.SearchPersonsByName("John");
-            Console.WriteLine("Persons by name:");
-            foreach (var personByName in personsByName)
-            {
-                Console.WriteLine($"{personByName.Firstname} {personByName.LastName}");
-            }
+            personsByName.Log("Persons by name:");
 
             var personByEmail = personService.GetPersonByEmail("john@example.com");
             if (personByEmail != null)
             {
-                Console.WriteLine($"Person by email: {personByEmail.Firstname} {personByEmail.LastName}");
+                $"Person by email: {personByEmail.Firstname} {personByEmail.LastName}".Log();
             }
             else
             {
-                Console.WriteLine("No person found with the specified email.");
+                "No person found with the specified email.".Log();
             }
         }
     }
